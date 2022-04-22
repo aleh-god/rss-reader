@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Alfa RSS reader</string>
+    <string name="description_item_news_image">News list item image</string>
 </resources>
