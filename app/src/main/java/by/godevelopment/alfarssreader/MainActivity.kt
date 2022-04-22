@@ -22,9 +22,9 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launchWhenStarted {
             val result = repository.fetchAllNews()
-            Log.i(TAG, "onCreate: ${result.channel.title}")
+            Log.i(TAG, "onCreate: ${result.status}")
             val textView = findViewById<TextView>(R.id.message)
-            textView.text = result.channel.description
+            textView.text = result.totalResults.toString()
         }
     }
 }

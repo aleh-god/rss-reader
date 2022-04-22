@@ -1,11 +1,11 @@
 package by.godevelopment.alfarssreader.data.remotedatasource
 
-import by.godevelopment.alfarssreader.data.datamodels.RssModel
+import by.godevelopment.alfarssreader.data.datamodels.NewsModel
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface NewsApi {
 
-    // https://alfabank.ru/_/rss/_rss.html?subtype=1&category=2&city=21
-    @GET("_rss.html?subtype=1&category=2&city=21")
-    suspend fun fetchAllNews(): RssModel
+    @GET("top-headlines?country=us&category=business")
+    suspend fun fetchAllNews(@Query("apiKey") key: String): NewsModel
 }
