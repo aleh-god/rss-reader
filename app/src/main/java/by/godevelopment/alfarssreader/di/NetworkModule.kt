@@ -1,8 +1,9 @@
 package by.godevelopment.alfarssreader.di
 
 import by.godevelopment.alfarssreader.commons.BASE_URL
+import by.godevelopment.alfarssreader.data.remotedatasource.KEY_API
 import by.godevelopment.alfarssreader.data.remotedatasource.NewsApi
-import by.godevelopment.alfarssreader.data.remotedatasource.NewsDataSource
+import by.godevelopment.alfarssreader.data.remotedatasource.NewsRemoteDataSource
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -52,5 +53,5 @@ object NetworkModule {
     @Provides
     fun provideNewsDataSource(
         NewsApi: NewsApi
-    ): NewsDataSource = NewsDataSource(NewsApi)
+    ): NewsRemoteDataSource = NewsRemoteDataSource(NewsApi)
 }
