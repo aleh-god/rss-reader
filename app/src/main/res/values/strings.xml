@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Alfa RSS reader</string>
     <string name="description_item_news_image">News list item image</string>
+    <string name="article_title_null_stub">Title not provided by news source</string>
+    <string name="article_author_null_stub">Author name not provided by news source</string>
+    <string name="article_source_null_stub">Source name not provided by news source</string>
+    <string name="article_description_null_stub">Description not provided by news source</string>
+    <string name="article_time_null_stub">Time not provided by news source</string>
+    <string name="alert_error_loading">Data not aviable</string>
+    <string name="snackbar_btn_reload">Reload</string>
+    <string name="label_news_list">News list</string>
+    <string name="menu_favorite">Favorite</string>
+    <string name="label_news_card">News card</string>
 </resources>

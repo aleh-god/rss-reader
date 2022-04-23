@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/newsListFragment">
 
+    <fragment
+        android:id="@+id/newsListFragment"
+        android:name="by.godevelopment.alfarssreader.ui.newslist.NewsListFragment"
+        android:label="@string/label_news_list"
+        tools:layout="@layout/fragment_news_list" >
+        <action
+            android:id="@+id/action_newsListFragment_to_newsCardFragment"
+            app:destination="@id/newsCardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsCardFragment"
+        android:name="by.godevelopment.alfarssreader.ui.newscard.NewsCardFragment"
+        android:label="@string/label_news_card"
+        tools:layout="@layout/fragment_news_card" >
+        <action
+            android:id="@+id/action_newsCardFragment_to_newsListFragment"
+            app:destination="@id/newsListFragment" />
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>
