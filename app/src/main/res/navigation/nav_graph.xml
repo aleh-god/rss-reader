@@ -24,7 +24,7 @@
             android:id="@+id/action_newsCardFragment_to_newsListFragment"
             app:destination="@id/newsListFragment" />
         <argument
-            android:name="url"
-            app:argType="string" />
+            android:name="idItem"
+            app:argType="integer" />
     </fragment>
 </navigation>

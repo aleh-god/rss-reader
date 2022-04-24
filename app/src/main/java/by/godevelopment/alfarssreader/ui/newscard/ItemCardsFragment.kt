@@ -1,0 +1,29 @@
+package by.godevelopment.alfarssreader.ui.newscard
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import by.godevelopment.alfarssreader.databinding.ItemCardsFragmentBinding
+
+class ItemCardsFragment(private val url: String) : Fragment() {
+
+    private var _binding: ItemCardsFragmentBinding? = null
+    private val binding: ItemCardsFragmentBinding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = ItemCardsFragmentBinding.inflate(inflater, container, false)
+        binding.webView.loadUrl(url)
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
+}
