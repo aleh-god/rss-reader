@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class NewsAdapter(
-    private val onClick: (String?) -> Unit
+    private val onClick: (Int) -> Unit
 ) : RecyclerView.Adapter<NewsAdapter.ItemViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<NewsItemModel>() {
@@ -36,7 +36,7 @@ class NewsAdapter(
                 textTitle.text = newsItemModel.textTitle
                 textAuthor.text = newsItemModel.textAuthor
                 textDescription.text = newsItemModel.textDescription
-                textPublishedAt.text = newsItemModel.textPublishedAt
+                textPublishedAt.text = newsItemModel.textPublishedAt.toString() // TODO("Insert time")
                 newsItemModel.urlToImage?.let {
                     Log.i(TAG, "bind: urlToImage $it")
                     Glide.with(root)
@@ -48,7 +48,7 @@ class NewsAdapter(
                         .into(image)
                 }
                 root.setOnClickListener {
-                    onClick.invoke(newsItemModel.url)
+                    onClick.invoke(newsItemModel.id)
                 }
             }
         }

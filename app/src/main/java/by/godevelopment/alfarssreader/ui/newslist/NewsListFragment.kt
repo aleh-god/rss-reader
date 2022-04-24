@@ -27,14 +27,10 @@ class NewsListFragment : Fragment() {
     private val viewModel: NewsListViewModel by viewModels()
     private var _binding: FragmentNewsListBinding? = null
     private val binding get() = _binding!!
-    private val onClick: (String?) -> Unit = {
-        Log.i(TAG, "onClick: $it")
-        if (it != null) {
+    private val onClick: (Int) -> Unit = {
             Log.i(TAG, "onClick: Navigate to $it")
             val action = NewsListFragmentDirections.actionNewsListFragmentToNewsCardFragment(it)
             findNavController().navigate(action)
-        }
-        else viewModel.showAlert("No link to this article source")
     }
 
     override fun onCreateView(
@@ -52,12 +48,24 @@ class NewsListFragment : Fragment() {
         binding.apply {
             recyclerView.adapter = rvAdapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            swipeContainer.apply {
+                setOnRefreshListener {
+                    viewModel.fetchDataModel()
+                }
+                setColorSchemeResources(
+                    android.R.color.holo_blue_bright,
+                    android.R.color.holo_green_light,
+                    android.R.color.holo_orange_light,
+                    android.R.color.holo_red_light
+                )
+            }
         }
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect { uiState ->
                 Log.i(TAG, "setupUi: $uiState")
                 if (!uiState.isFetchingData) {
                     binding.linearProgress.visibility = View.GONE
+                    binding.swipeContainer.isRefreshing = false
                 } else binding.linearProgress.visibility = View.VISIBLE
                 rvAdapter.itemList = uiState.dataList
             }
