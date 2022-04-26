@@ -36,17 +36,17 @@ class NewsListViewModel @Inject constructor(
         fetchJob = viewModelScope.launch {
             getArticlesAndConvertToItemsUseCase()
                 .onStart {
-                    Log.i(TAG, "MainViewModel.launch: .onStart")
+                    Log.i(TAG, "NewsListViewModel.launch: .onStart")
                     _uiState.value = UiState(isFetchingData = true)
                 }
                 .catch { exception ->
-                    Log.i(TAG, "MainViewModel: .catch ${exception.message}")
+                    Log.i(TAG, "NewsListViewModel: .catch ${exception.message}")
                     _uiState.value = UiState(isFetchingData = false)
                     delay(500) // For good UI usability
                     _uiEvent.emit(stringHelper.getString(R.string.alert_error_loading))
                 }
                 .collect {
-                    Log.i(TAG, "MainViewModel: .collect = $it")
+                    Log.i(TAG, "NewsListViewModel: .collect = ${it.size}")
                     _uiState.value = UiState(
                         isFetchingData = false,
                         dataList = it
