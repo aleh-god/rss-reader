@@ -16,6 +16,9 @@ interface NewsDao {
     @Delete
     suspend fun deleteArticleEntity(article: ArticleEntity)
 
-    @Query("SELECT * FROM article")
+    @Query("SELECT * FROM article ORDER BY publishedAt DESC")
     fun getAllArticleEntities(): Flow<List<ArticleEntity>>
+
+    @Query("SELECT * FROM article WHERE url = :key")
+    suspend fun getArticleEntityByUrl(key: String): ArticleEntity
 }

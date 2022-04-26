@@ -28,8 +28,13 @@ class NewsRepositoryImpl @Inject constructor(
                 }
             }
 
-    override suspend fun saveNewsCardToFavorite(articleEntity: ArticleEntity): Boolean {
-        Log.i(TAG, "NewsRepositoryImpl saveNewsCardToFavorite: ")
+    override suspend fun setFavoriteStatusInArticleByUrl(key: String): Boolean {
+        Log.i(TAG, "NewsRepositoryImpl saveNewsCardToFavorite: $key")
+        newsLocalDataSource.setFavoriteStatusInArticleByUrl(key)
         return true
+    }
+
+    override suspend fun changeFavoriteStatusInArticleByUrl(key: String) {
+        newsLocalDataSource.changeFavoriteStatusInArticleByUrl(key)
     }
 }

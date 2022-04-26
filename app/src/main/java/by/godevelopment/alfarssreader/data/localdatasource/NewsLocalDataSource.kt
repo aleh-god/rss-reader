@@ -26,4 +26,22 @@ class NewsLocalDataSource @Inject constructor(
         }
         newsDao.insertAllArticleEntities(*articles.toTypedArray())
     }
+
+    suspend fun setFavoriteStatusInArticleByUrl(key: String) {
+        val article = newsDao.getArticleEntityByUrl(key)
+        newsDao.replaceAllArticleEntities(
+            article.copy(
+                isFavorite = true
+            )
+        )
+    }
+
+    suspend fun changeFavoriteStatusInArticleByUrl(key: String) {
+        val article = newsDao.getArticleEntityByUrl(key)
+        newsDao.replaceAllArticleEntities(
+            article.copy(
+                isFavorite = !article.isFavorite
+            )
+        )
+    }
 }
