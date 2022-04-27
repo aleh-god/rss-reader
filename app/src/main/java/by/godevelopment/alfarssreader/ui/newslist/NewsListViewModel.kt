@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import by.godevelopment.alfarssreader.R
 import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.domain.helpers.StringHelper
+import by.godevelopment.alfarssreader.domain.usecases.ChangeFavoriteStatusInNewsCardUseCase
 import by.godevelopment.alfarssreader.domain.usecases.GetArticlesAndConvertToItemsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -17,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class NewsListViewModel @Inject constructor(
     private val getArticlesAndConvertToItemsUseCase: GetArticlesAndConvertToItemsUseCase,
+    private val changeFavoriteStatusInNewsCardUseCase: ChangeFavoriteStatusInNewsCardUseCase,
     private val stringHelper: StringHelper
 ) : ViewModel() {
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState())
@@ -58,6 +60,18 @@ class NewsListViewModel @Inject constructor(
     fun showAlert(message: String) {
         viewModelScope.launch {
             _uiEvent.emit(message)
+        }
+    }
+
+    fun changeFavoriteStatusInNewsCard(urlKey: String?) {
+        urlKey?.let {
+            viewModelScope.launch {
+                try {
+                    changeFavoriteStatusInNewsCardUseCase(urlKey)
+                } catch (e: Exception) {
+                    showAlert("${e.message}")
+                }
+            }
         }
     }
 

@@ -13,7 +13,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class NewsAdapter(
-    private val onClick: (Int) -> Unit
+    private val onClickRead: (String) -> Unit,
+    private val onClickAdd: (String) -> Unit
 ) : RecyclerView.Adapter<NewsAdapter.ItemViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<NewsItemModel>() {
@@ -36,9 +37,9 @@ class NewsAdapter(
                 textTitle.text = newsItemModel.textTitle
                 textAuthor.text = newsItemModel.textAuthor
                 textDescription.text = newsItemModel.textDescription
-                textPublishedAt.text = newsItemModel.textPublishedAt.toString() // TODO("Insert time")
+                textPublishedAt.text = newsItemModel.textPublishedAt
+
                 newsItemModel.urlToImage?.let {
-                    Log.i(TAG, "bind: urlToImage $it")
                     Glide.with(root)
                         .load(it)
                         .centerCrop() // .fitCenter()
@@ -47,8 +48,17 @@ class NewsAdapter(
                         .placeholder(R.drawable.image)
                         .into(image)
                 }
-                root.setOnClickListener {
-                    onClick.invoke(newsItemModel.id)
+
+                val favPicRes = if (newsItemModel.isFavorite)
+                    R.drawable.ic_baseline_favorite_24
+                    else R.drawable.ic_baseline_favorite_border_24
+                buttonAddNews.setImageResource(favPicRes)
+                buttonAddNews.setOnClickListener {
+                    Log.i(TAG, "buttonAddNews.setOnClickListener")
+                    onClickAdd.invoke(newsItemModel.url)
+                }
+                buttonReadNews.setOnClickListener {
+                    onClickRead.invoke(newsItemModel.url)
                 }
             }
         }

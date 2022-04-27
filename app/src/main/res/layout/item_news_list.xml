@@ -47,7 +47,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_author"
-            tools:src="@drawable/ic_launcher_foreground"
+            tools:src="@drawable/image_not_loaded"
             />
 
         <com.google.android.material.textview.MaterialTextView
@@ -56,22 +56,11 @@
             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/image_favorite"
+            app:layout_constraintBottom_toTopOf="@+id/text_publishedAt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image"
             tools:text="@tools:sample/lorem" />
-
-        <ImageView
-            android:id="@+id/image_favorite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:src="@drawable/ic_baseline_favorite_24"
-            app:layout_constraintBottom_toTopOf="@+id/text_publishedAt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_description"
-            />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_publishedAt"
@@ -79,12 +68,33 @@
             android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_favorite"
+            app:layout_constraintTop_toBottomOf="@+id/text_description"
             tools:ignore="TextContrastCheck"
             tools:text="@tools:sample/lorem" />
+
+        <ImageView
+            android:id="@+id/button_add_news"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            tools:src="@drawable/image_not_loaded"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_read_news"
+            app:layout_constraintTop_toTopOf="@id/button_read_news"
+            app:layout_constraintBottom_toBottomOf="@id/button_read_news"
+            android:contentDescription="@string/description_add_news_to_favorite" />
+
+        <Button
+            android:id="@+id/button_read_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_read_news"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            app:layout_constraintStart_toEndOf="@id/button_add_news"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_publishedAt"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

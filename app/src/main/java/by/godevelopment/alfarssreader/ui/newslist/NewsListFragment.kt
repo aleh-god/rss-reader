@@ -28,10 +28,14 @@ class NewsListFragment : Fragment() {
     private val viewModel: NewsListViewModel by viewModels()
     private var _binding: FragmentNewsListBinding? = null
     private val binding get() = _binding!!
-    private val onClick: (String) -> Unit = {
-        Log.i(TAG, "onClick: Navigate to $it")
+    private val onClickRead: (String) -> Unit = {
+        Log.i(TAG, "onClickRead: Navigate to $it")
         val action = NewsListFragmentDirections.actionNewsListFragmentToNewsCardFragment(it)
         findNavController().navigate(action)
+    }
+    private val onClickAdd: (String) -> Unit = {
+        Log.i(TAG, "onClickAdd: changeFavoriteStatusInNewsCard $it")
+        viewModel.changeFavoriteStatusInNewsCard(it)
     }
 
     override fun onCreateView(
@@ -60,7 +64,7 @@ class NewsListFragment : Fragment() {
     }
 
     private fun setupUi() {
-        val rvAdapter = NewsAdapter(onClick)
+        val rvAdapter = NewsAdapter(onClickRead, onClickAdd)
         binding.apply {
             recyclerView.adapter = rvAdapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -78,12 +82,15 @@ class NewsListFragment : Fragment() {
         }
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect { uiState ->
-                Log.i(TAG, "setupUi: $uiState")
+                Log.i(TAG, "NewsListFragment setupUi: ${uiState.dataList.size}")
                 if (!uiState.isFetchingData) {
                     binding.linearProgress.visibility = View.GONE
                     binding.swipeContainer.isRefreshing = false
                 } else binding.linearProgress.visibility = View.VISIBLE
-                rvAdapter.itemList = uiState.dataList
+                if (!uiState.dataList.isNullOrEmpty()) {
+                    Log.i(TAG, "NewsListFragment rvAdapter.itemList: ${uiState.dataList.size}")
+                    rvAdapter.itemList = uiState.dataList
+                }
             }
         }
     }
