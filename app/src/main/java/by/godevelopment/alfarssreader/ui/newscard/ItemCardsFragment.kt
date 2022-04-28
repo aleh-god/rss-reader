@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.databinding.ItemCardsFragmentBinding
 
-class ItemCardsFragment(private val url: String) : Fragment() {
+class ItemCardsFragment : Fragment() {
 
     private var _binding: ItemCardsFragmentBinding? = null
     private val binding: ItemCardsFragmentBinding get() = _binding!!
@@ -18,8 +19,14 @@ class ItemCardsFragment(private val url: String) : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = ItemCardsFragmentBinding.inflate(inflater, container, false)
-        binding.webView.loadUrl(url)
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        arguments?.takeIf { it.containsKey(TAG) }?.apply {
+            binding.webView.loadUrl(getString(TAG).toString())
+        }
     }
 
     override fun onDestroy() {
