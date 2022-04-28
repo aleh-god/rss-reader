@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_newsListFragment_to_newsCardFragment"
             app:destination="@id/newsCardFragment" />
+        <action
+            android:id="@+id/action_newsListFragment_to_favoriteListFragment"
+            app:destination="@id/favoriteListFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsCardFragment"
@@ -26,5 +29,19 @@
         <argument
             android:name="url"
             app:argType="string" />
+        <action
+            android:id="@+id/action_newsCardFragment_to_favoriteListFragment"
+            app:destination="@id/favoriteListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteListFragment"
+        android:name="by.godevelopment.alfarssreader.ui.favoritelist.FavoriteListFragment"
+        android:label="@string/label_fav_list" >
+        <action
+            android:id="@+id/action_favoriteListFragment_to_newsListFragment"
+            app:destination="@id/newsListFragment" />
+        <action
+            android:id="@+id/action_favoriteListFragment_to_newsCardFragment"
+            app:destination="@id/newsCardFragment" />
     </fragment>
 </navigation>
