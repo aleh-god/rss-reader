@@ -8,6 +8,8 @@ import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.domain.helpers.StringHelper
 import by.godevelopment.alfarssreader.domain.usecases.ChangeFavoriteStatusInNewsCardUseCase
 import by.godevelopment.alfarssreader.domain.usecases.GetArticlesAndConvertToItemsUseCase
+import by.godevelopment.alfarssreader.domain.usecases.ReloadDataUseCase
+import by.godevelopment.alfarssreader.ui.models.NewsItemModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -19,6 +21,7 @@ import javax.inject.Inject
 class NewsListViewModel @Inject constructor(
     private val getArticlesAndConvertToItemsUseCase: GetArticlesAndConvertToItemsUseCase,
     private val changeFavoriteStatusInNewsCardUseCase: ChangeFavoriteStatusInNewsCardUseCase,
+    private val reloadDataUseCase: ReloadDataUseCase,
     private val stringHelper: StringHelper
 ) : ViewModel() {
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState())
@@ -33,7 +36,7 @@ class NewsListViewModel @Inject constructor(
         fetchDataModel()
     }
 
-    fun fetchDataModel() {
+    private fun fetchDataModel() {
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch {
             getArticlesAndConvertToItemsUseCase()
@@ -57,7 +60,13 @@ class NewsListViewModel @Inject constructor(
         }
     }
 
-    fun showAlert(message: String) {
+    fun reloadDataList() {
+        viewModelScope.launch {
+            reloadDataUseCase()
+        }
+    }
+
+    private fun showAlert(message: String) {
         viewModelScope.launch {
             _uiEvent.emit(message)
         }

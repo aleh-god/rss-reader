@@ -1,4 +1,4 @@
-package by.godevelopment.alfarssreader.ui.newslist
+package by.godevelopment.alfarssreader.ui.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import by.godevelopment.alfarssreader.R
 import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.databinding.ItemNewsListBinding
+import by.godevelopment.alfarssreader.ui.models.NewsItemModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
@@ -64,7 +65,7 @@ class NewsAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.ItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(
             ItemNewsListBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -73,7 +74,7 @@ class NewsAdapter(
             ))
     }
 
-    override fun onBindViewHolder(holder: NewsAdapter.ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(itemList[position])
     }
 

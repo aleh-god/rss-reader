@@ -1,4 +1,4 @@
-package by.godevelopment.alfarssreader.ui.newslist
+package by.godevelopment.alfarssreader.ui.models
 
 data class NewsItemModel(
     val isFavorite: Boolean = false,

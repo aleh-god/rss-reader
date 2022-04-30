@@ -2,6 +2,8 @@ package by.godevelopment.alfarssreader.data.localdatasource
 
 import by.godevelopment.alfarssreader.data.datamodels.Article
 import by.godevelopment.alfarssreader.data.datautils.ConvertArticleApiToArticleEntity
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class NewsLocalDataSource @Inject constructor(
@@ -25,5 +27,9 @@ class NewsLocalDataSource @Inject constructor(
                 isFavorite = !article.isFavorite
             )
         )
+    }
+
+    fun getDbIsReadyStateAsFlow(): Flow<Boolean> = getAllNews().map {
+        it.isNotEmpty()
     }
 }

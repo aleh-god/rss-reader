@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.godevelopment.alfarssreader.R
 import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.databinding.FragmentNewsListBinding
+import by.godevelopment.alfarssreader.ui.adapters.NewsAdapter
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -28,6 +28,7 @@ class NewsListFragment : Fragment() {
     private val viewModel: NewsListViewModel by viewModels()
     private var _binding: FragmentNewsListBinding? = null
     private val binding get() = _binding!!
+
     private val onClickRead: (String) -> Unit = {
         Log.i(TAG, "onClickRead: Navigate to $it")
         val action = NewsListFragmentDirections.actionNewsListFragmentToNewsCardFragment(it)
@@ -56,6 +57,7 @@ class NewsListFragment : Fragment() {
             when (item.itemId) {
                 R.id.favorite_list -> {
                     Log.i(TAG, "toolbar.setOnMenuItemClickListener: favorite_list")
+                    findNavController().navigate(R.id.action_newsListFragment_to_favoriteListFragment)
                     true
                 }
                 else -> false
@@ -70,7 +72,7 @@ class NewsListFragment : Fragment() {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             swipeContainer.apply {
                 setOnRefreshListener {
-                    viewModel.fetchDataModel()
+                    viewModel.reloadDataList()
                 }
                 setColorSchemeResources(
                     android.R.color.holo_blue_bright,
@@ -101,7 +103,7 @@ class NewsListFragment : Fragment() {
                 Snackbar
                     .make(binding.root, it, Snackbar.LENGTH_INDEFINITE)
                     .setAction(getString(R.string.snackbar_btn_reload))
-                    { viewModel.fetchDataModel() }
+                    { viewModel.reloadDataList() }
                     .show()
             }
         }

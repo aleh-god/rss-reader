@@ -1,5 +1,6 @@
 package by.godevelopment.alfarssreader.di
 
+import by.godevelopment.alfarssreader.activities.MainSplashRepository
 import by.godevelopment.alfarssreader.data.repositories.NewsRepositoryImpl
 import by.godevelopment.alfarssreader.domain.repositories.NewsRepository
 import dagger.Binds
@@ -13,4 +14,7 @@ abstract class BindsModule {
 
     @Binds
     abstract fun bindRepositoryToImpl(newsRepositoryImpl: NewsRepositoryImpl) : NewsRepository
+
+    @Binds
+    abstract fun bindMainSplashRepositoryToImpl(newsRepositoryImpl: NewsRepositoryImpl) : MainSplashRepository
 }
