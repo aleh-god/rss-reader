@@ -7,7 +7,7 @@ interface NewsRepository {
 
     fun getArticlesAsFlow(): Flow<List<ArticleEntity>>
 
-    suspend fun setFavoriteStatusInArticleByUrl(key: String): Boolean
-
     suspend fun changeFavoriteStatusInArticleByUrl(key: String)
+
+    suspend fun reloadNewsFromRemoteToLocalDataSource()
 }

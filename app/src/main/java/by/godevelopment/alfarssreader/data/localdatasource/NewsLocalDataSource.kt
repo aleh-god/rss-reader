@@ -1,7 +1,6 @@
 package by.godevelopment.alfarssreader.data.localdatasource
 
 import by.godevelopment.alfarssreader.data.datamodels.Article
-import by.godevelopment.alfarssreader.data.datamodels.ArticleEntity
 import by.godevelopment.alfarssreader.data.datautils.ConvertArticleApiToArticleEntity
 import javax.inject.Inject
 
@@ -12,28 +11,11 @@ class NewsLocalDataSource @Inject constructor(
 
     fun getAllNews() = newsDao.getAllArticleEntities()
 
-    suspend fun insertAllNews(articles: List<ArticleEntity>) {
-        newsDao.insertAllArticleEntities(*articles.toTypedArray())
-    }
-
-    suspend fun replaceAllNews(articles: List<ArticleEntity>) {
-        newsDao.replaceAllArticleEntities(*articles.toTypedArray())
-    }
-
-    suspend fun insertRawNews(rawData: List<Article>) {
-        val articles = rawData.map {
-            convertArticleApiToArticleEntity(it)
-        }
-        newsDao.insertAllArticleEntities(*articles.toTypedArray())
-    }
-
-    suspend fun setFavoriteStatusInArticleByUrl(key: String) {
-        val article = newsDao.getArticleEntityByUrl(key)
-        newsDao.replaceAllArticleEntities(
-            article.copy(
-                isFavorite = true
-            )
-        )
+    suspend fun insertRawNews(rawRemoteData: List<Article>) {
+        val articlesEntity = rawRemoteData
+            .map { convertArticleApiToArticleEntity(it) }
+            .toTypedArray()
+        newsDao.insertAllArticleEntities(*articlesEntity)
     }
 
     suspend fun changeFavoriteStatusInArticleByUrl(key: String) {
