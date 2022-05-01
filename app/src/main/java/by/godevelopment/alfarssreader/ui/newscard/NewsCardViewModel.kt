@@ -64,7 +64,7 @@ class NewsCardViewModel @Inject constructor(
         }
     }
 
-    fun showAlert(message: String) {
+    private fun showAlert(message: String) {
         viewModelScope.launch {
             _uiEvent.emit(message)
         }

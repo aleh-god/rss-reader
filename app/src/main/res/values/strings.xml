@@ -14,9 +14,10 @@
     <string name="label_news_card">News card</string>
     <string name="name_title_null_stub">Name not provided by news source</string>
     <string name="content_description_null_stub">Content not provided by news source</string>
-    <string name="toolbar_news_card_tittle">Card-</string>
+    <string name="toolbar_news_card_tittle">News card&#160;</string>
     <string name="button_read_news">Read</string>
     <string name="description_add_news_to_favorite">Add news to favorite</string>
     <string name="label_fav_list">Favorite List</string>
     <string name="button_del_news">Delete</string>
+    <string name="toolbar_news_subtitle_text">The number of news is&#160;</string>
 </resources>

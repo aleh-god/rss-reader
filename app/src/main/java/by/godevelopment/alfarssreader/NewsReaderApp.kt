@@ -50,8 +50,8 @@ class NewsReaderApp : Application(), Configuration.Provider {
     private fun setupNewsReloadWork() {
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
-            .setRequiresCharging(true)
-            .setRequiresBatteryNotLow(true)
+            //.setRequiresCharging(true)
+            //.setRequiresBatteryNotLow(true)
             .build()
 
         val repeatingRequest =

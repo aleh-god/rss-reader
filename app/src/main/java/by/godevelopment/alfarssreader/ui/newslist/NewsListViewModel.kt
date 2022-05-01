@@ -24,6 +24,7 @@ class NewsListViewModel @Inject constructor(
     private val reloadDataUseCase: ReloadDataUseCase,
     private val stringHelper: StringHelper
 ) : ViewModel() {
+
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> = _uiState
 
@@ -63,6 +64,7 @@ class NewsListViewModel @Inject constructor(
     fun reloadDataList() {
         viewModelScope.launch {
             reloadDataUseCase()
+            fetchDataModel()
         }
     }
 

@@ -84,6 +84,11 @@ class FavoriteListFragment : Fragment() {
                     Log.i(TAG, "FavoriteListFragment rvAdapter.itemList: ${uiState.dataList.size}")
                     rvAdapter.itemList = uiState.dataList
                 }
+                binding.toolbar.apply {
+                    subtitle = context
+                        .getString(R.string.toolbar_news_subtitle_text) + uiState.dataList.size
+                    title = context.getString(R.string.label_fav_list)
+                }
             }
         }
     }

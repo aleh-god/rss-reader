@@ -5,8 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import by.godevelopment.alfarssreader.R
 import by.godevelopment.alfarssreader.databinding.ItemFavListBinding
 import by.godevelopment.alfarssreader.ui.models.NewsItemModel
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class FavAdapter(
     private val onClickRead: (String) -> Unit,
@@ -38,6 +41,15 @@ class FavAdapter(
                 }
                 buttonReadNews.setOnClickListener {
                     onClickRead.invoke(newsItemModel.url)
+                }
+                newsItemModel.urlToImage?.let {
+                    Glide.with(root)
+                        .load(it)
+                        .centerCrop() // .fitCenter()
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .error(R.drawable.image_not_loaded)
+                        .placeholder(R.drawable.image)
+                        .into(image)
                 }
             }
         }

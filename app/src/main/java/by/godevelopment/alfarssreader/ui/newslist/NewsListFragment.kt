@@ -93,6 +93,11 @@ class NewsListFragment : Fragment() {
                     Log.i(TAG, "NewsListFragment rvAdapter.itemList: ${uiState.dataList.size}")
                     rvAdapter.itemList = uiState.dataList
                 }
+                binding.toolbar.apply {
+                    subtitle = context
+                        .getString(R.string.toolbar_news_subtitle_text) + uiState.dataList.size
+                    title = context.getString(R.string.label_news_list)
+                }
             }
         }
     }

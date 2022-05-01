@@ -24,9 +24,18 @@ class ItemCardsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        arguments?.takeIf { it.containsKey(TAG) }?.apply {
-            binding.webView.loadUrl(getString(TAG).toString())
+        if (savedInstanceState != null) {
+            binding.webView.restoreState(savedInstanceState)
+        } else {
+            arguments?.takeIf { it.containsKey(TAG) }?.apply {
+                binding.webView.loadUrl(getString(TAG).toString())
+            }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        binding.webView.saveState(outState)
+        super.onSaveInstanceState(outState)
     }
 
     override fun onDestroy() {
