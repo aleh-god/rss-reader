@@ -1,21 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.NewsAppSample.TextView" parent="Widget.MaterialComponents.TextView">
-        <item name="android:paddingTop">@dimen/small_padding</item>
-        <item name="android:paddingBottom">@dimen/small_padding</item>
-        <item name="android:paddingEnd">@dimen/average_padding</item>
-        <item name="android:paddingStart">@dimen/average_padding</item>
+
+    <style name="Widget.AlfaRSSReader" parent="">
     </style>
 
-    <style name="Widget.NewsAppSample.TextView.Title">
-        <item name="android:textAlignment">center</item>
+    <style name="Widget.AlfaRSSReader.TextView" parent="Widget.MaterialComponents.TextView">
     </style>
 
-    <style name="Widget.NewsAppSample.TextView.Author">
-        <item name="android:textAlignment">textEnd</item>
+    <style name="Widget.AlfaRSSReader.TextView.Fav">
+        <item name="android:layout_marginStart">@dimen/main_margin</item>
+        <item name="android:layout_marginEnd">@dimen/main_margin</item>
     </style>
 
-    <style name="Widget.NewsAppSample.TextView.Published">
+    <style name="Widget.AlfaRSSReader.TextView.Fav.Title">
+        <item name="android:layout_marginTop">@dimen/small_margin</item>
+    </style>
+
+    <style name="Widget.AlfaRSSReader.TextView.Fav.Author">
+        <item name="android:layout_marginTop">@dimen/main_margin</item>
+    </style>
+
+    <style name="Widget.AlfaRSSReader.TextView.ReadNews">
+        <item name="android:layout_marginStart">@dimen/main_margin</item>
+        <item name="android:layout_marginEnd">@dimen/main_margin</item>
+    </style>
+
+    <style name="Widget.AlfaRSSReader.TextView.ReadNews.Title">
+        <item name="android:layout_marginTop">@dimen/small_margin</item>
+    </style>
+
+    <style name="Widget.AlfaRSSReader.TextView.ReadNews.Author">
+        <item name="android:layout_marginTop">@dimen/mini_margin</item>
+    </style>
+
+    <style name="Widget.AlfaRSSReader.ImageView">
+        <item name="android:layout_margin">@dimen/main_margin</item>
+    </style>
+
+    <style name="Widget.AlfaRSSReader.Button" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    </style>
+
+    <style name="Widget.AlfaRSSReader.Button.ReadNews">
+        <item name="android:layout_marginStart">@dimen/special_margin</item>
+        <item name="android:layout_marginEnd">@dimen/special_margin</item>
+        <item name="android:layout_marginTop">@dimen/big_margin</item>
+        <item name="android:layout_marginBottom">@dimen/small_margin</item>
+    </style>
+
+    <style name="Widget.AlfaRSSReader.Button.Fav">
+        <item name="android:layout_marginTop">@dimen/small_margin</item>
+        <item name="android:layout_marginBottom">@dimen/small_margin</item>
+    </style>
+
+    <style name="Widget.AlfaRSSReader.Button.Fav.DelNews">
+        <item name="android:layout_marginStart">@dimen/main_margin</item>
+        <item name="android:layout_marginEnd">@dimen/mini_margin</item>
+    </style>
+
+    <style name="Widget.AlfaRSSReader.Button.Fav.ReadNews">
+        <item name="android:layout_marginStart">@dimen/mini_margin</item>
+        <item name="android:layout_marginEnd">@dimen/main_margin</item>
+    </style>
+
+    <style name="Widget.AlfaRSSReader.TextView.Published">
         <item name="android:textAlignment">textEnd</item>
     </style>
 </resources>

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryBrandPistachio">#cbe86b</color>
-    <color name="primaryLightBrandPistachio">#ffff9c</color>
-    <color name="primaryDarkBrandPistachio">#98b63b</color>
-    <color name="secondaryBrandBrown">#795548</color>
-    <color name="secondaryBrandLightBrown">#a98274</color>
-    <color name="secondaryBrandDarkBrown">#4b2c20</color>
-    <color name="BrandBeige">#f2e9e1</color>
-    <color name="DarkBrandBeige">#bfb7af</color>
-    <color name="primaryTextBrandPistachio">#000000</color>
-    <color name="secondaryTextBrandBeige">#FFFFFFFF</color>
+    <color name="primaryTeal">#006e7f</color>
+    <color name="primaryLightTeal">#499dae</color>
+    <color name="primaryDarkTeal">#004353</color>
+    <color name="secondaryYellow">#f8cb2e</color>
+    <color name="secondaryLightYellow">#fffe65</color>
+    <color name="secondaryDarkYellow">#c19b00</color>
+    <color name="primaryTextTeal">#ffffff</color>
+    <color name="secondaryTextYellow">#000000</color>
 
 </resources>

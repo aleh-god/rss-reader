@@ -15,50 +15,69 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_author"
-            style="@style/Widget.NewsAppSample.TextView.Author"
+            style="@style/Widget.AlfaRSSReader.TextView.Fav.Author"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/text_title"
-            app:layout_constraintEnd_toStartOf="@id/button_read_news"
+            app:layout_constraintEnd_toStartOf="@id/image"
             tools:text="@tools:sample/lorem" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_title"
-            style="@style/Widget.NewsAppSample.TextView.Title"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            style="@style/Widget.AlfaRSSReader.TextView.Fav.Title"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_author"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/button_read_news"
+            app:layout_constraintEnd_toStartOf="@id/image"
+            app:layout_constraintBottom_toTopOf="@id/barrier"
             tools:text="@tools:sample/lorem" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/medium_image_size"
+            android:layout_height="@dimen/medium_image_size"
+            android:contentDescription="@string/description_item_news_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/barrier"
+            style="@style/Widget.AlfaRSSReader.ImageView"
+            tools:src="@drawable/image_not_loaded"
+            />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="image, text_title" />
 
         <Button
             android:id="@+id/button_del_news"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/button_del_news"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/button_read_news"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/button_read_news"
+            app:layout_constraintTop_toBottomOf="@id/barrier"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_read_news"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.AlfaRSSReader.Button.Fav.DelNews"
             />
 
         <Button
             android:id="@+id/button_read_news"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/button_read_news"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/text_title"
-            app:layout_constraintTop_toBottomOf="@id/button_del_news"
+            app:layout_constraintStart_toEndOf="@id/button_del_news"
+            app:layout_constraintTop_toBottomOf="@id/barrier"
+            style="@style/Widget.AlfaRSSReader.Button.Fav.ReadNews"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

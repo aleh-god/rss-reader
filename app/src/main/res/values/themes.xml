@@ -2,13 +2,13 @@
     <!-- Base application theme. -->
     <style name="Theme.AlfaRSSReader" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primaryBrandPistachio</item>
-        <item name="colorPrimaryVariant">@color/primaryDarkBrandPistachio</item>
-        <item name="colorOnPrimary">@color/primaryTextBrandPistachio</item>
+        <item name="colorPrimary">@color/primaryTeal</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkTeal</item>
+        <item name="colorOnPrimary">@color/primaryTextTeal</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondaryBrandBrown</item>
-        <item name="colorSecondaryVariant">@color/secondaryBrandDarkBrown</item>
-        <item name="colorOnSecondary">@color/secondaryTextBrandBeige</item>
+        <item name="colorSecondary">@color/secondaryYellow</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkYellow</item>
+        <item name="colorOnSecondary">@color/secondaryTextYellow</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->

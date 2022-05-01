@@ -13,46 +13,64 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/button_add_news"
+            android:layout_width="@dimen/small_image_size"
+            android:layout_height="@dimen/small_image_size"
+            tools:src="@drawable/image_not_loaded"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/barrierOne"
+            android:contentDescription="@string/description_add_news_to_favorite"
+            style="@style/Widget.AlfaRSSReader.ImageView"
+            />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_title"
-            style="@style/Widget.NewsAppSample.TextView.Title"
+            style="@style/Widget.AlfaRSSReader.TextView.ReadNews.Title"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/text_author"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/button_add_news"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@tools:sample/lorem" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_author"
-            style="@style/Widget.NewsAppSample.TextView.Author"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-            android:layout_width="match_parent"
+            style="@style/Widget.AlfaRSSReader.TextView.ReadNews.Author"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/button_add_news"
             app:layout_constraintTop_toBottomOf="@+id/text_title"
+            app:layout_constraintBottom_toTopOf="@+id/barrierOne"
             tools:text="@tools:sample/lorem" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrierOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="button_add_news, text_author" />
 
         <ImageView
             android:id="@+id/image"
             android:layout_width="0dp"
-            android:layout_height="@dimen/image_size"
+            android:layout_height="@dimen/big_image_size"
             android:contentDescription="@string/description_item_news_image"
-            app:layout_constraintBottom_toTopOf="@+id/text_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_author"
+            app:layout_constraintTop_toBottomOf="@+id/barrierOne"
+            android:layout_marginTop="@dimen/small_margin"
             tools:src="@drawable/image_not_loaded"
             />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_description"
-            style="@style/Widget.NewsAppSample.TextView"
+            style="@style/Widget.AlfaRSSReader.TextView.ReadNews.Title"
             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,8 +82,9 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_publishedAt"
-            style="@style/Widget.NewsAppSample.TextView.Published"
+            style="@style/Widget.AlfaRSSReader.TextView.ReadNews.Title"
             android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+            android:gravity="end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,26 +93,16 @@
             tools:ignore="TextContrastCheck"
             tools:text="@tools:sample/lorem" />
 
-        <ImageView
-            android:id="@+id/button_add_news"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            tools:src="@drawable/image_not_loaded"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button_read_news"
-            app:layout_constraintTop_toTopOf="@id/button_read_news"
-            app:layout_constraintBottom_toBottomOf="@id/button_read_news"
-            android:contentDescription="@string/description_add_news_to_favorite" />
-
         <Button
             android:id="@+id/button_read_news"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/button_read_news"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            app:layout_constraintStart_toEndOf="@id/button_add_news"
+            style="@style/Widget.AlfaRSSReader.Button.ReadNews"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_publishedAt"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
