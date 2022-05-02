@@ -63,8 +63,23 @@ class NewsListViewModel @Inject constructor(
 
     fun reloadDataList() {
         viewModelScope.launch {
-            reloadDataUseCase()
-            fetchDataModel()
+            val currentState = _uiState.value
+            try {
+
+                _uiState.value = currentState.copy(
+                    isFetchingData = true
+                )
+                reloadDataUseCase()
+                _uiState.value = currentState.copy(
+                    isFetchingData = false
+                )
+            } catch (e: Exception) {
+                Log.i(TAG, "reloadDataList: ${e.message}")
+                _uiState.value = currentState.copy(
+                    isFetchingData = false
+                )
+                showAlert(stringHelper.getString(R.string.alert_error_loading))
+            }
         }
     }
 
@@ -80,7 +95,8 @@ class NewsListViewModel @Inject constructor(
                 try {
                     changeFavoriteStatusInNewsCardUseCase(urlKey)
                 } catch (e: Exception) {
-                    showAlert("${e.message}")
+                    Log.i(TAG, "changeFavoriteStatusInNewsCard: ${e.message}")
+                    showAlert(stringHelper.getString(R.string.alert_error_loading))
                 }
             }
         }
