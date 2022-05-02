@@ -72,7 +72,9 @@ class NewsCardFragment : Fragment() {
                         viewModel.currentCardPosition?.let {
                             post { setCurrentItem(it, true) }
                         }
+
                         registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+
                             override fun onPageSelected(position: Int) {
                                 currentCardUrlInViewPager = uiState.dataList[position].url
                                 viewModel.currentCardPosition = position

@@ -8,7 +8,7 @@ import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.domain.helpers.StringHelper
 import by.godevelopment.alfarssreader.domain.usecases.ChangeFavoriteStatusInNewsCardUseCase
 import by.godevelopment.alfarssreader.domain.usecases.GetFavoriteArticlesAndConvertToItemsUseCase
-import by.godevelopment.alfarssreader.ui.models.NewsItemModel
+import by.godevelopment.alfarssreader.domain.models.NewsItemModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

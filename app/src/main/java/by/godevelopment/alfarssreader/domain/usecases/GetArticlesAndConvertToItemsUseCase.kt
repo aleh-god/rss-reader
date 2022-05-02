@@ -1,7 +1,7 @@
 package by.godevelopment.alfarssreader.domain.usecases
 
 import by.godevelopment.alfarssreader.domain.repositories.NewsRepository
-import by.godevelopment.alfarssreader.ui.models.NewsItemModel
+import by.godevelopment.alfarssreader.domain.models.NewsItemModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
