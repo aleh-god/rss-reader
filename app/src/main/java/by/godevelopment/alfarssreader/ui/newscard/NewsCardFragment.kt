@@ -31,9 +31,7 @@ class NewsCardFragment : Fragment() {
     private val  binding: FragmentNewsCardBinding get() = _binding!!
     private val args: NewsCardFragmentArgs by navArgs()
 
-    private val pagerCallBack by lazy {
-        // TODO("unregistered")
-    }
+    private var viewPagerCallBack: ViewPager2.OnPageChangeCallback? = null
     private var currentCardUrlInViewPager: String? = null
 
     override fun onCreateView(
@@ -72,8 +70,7 @@ class NewsCardFragment : Fragment() {
                         viewModel.currentCardPosition?.let {
                             post { setCurrentItem(it, true) }
                         }
-
-                        registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                        viewPagerCallBack = object : ViewPager2.OnPageChangeCallback() {
 
                             override fun onPageSelected(position: Int) {
                                 currentCardUrlInViewPager = uiState.dataList[position].url
@@ -89,7 +86,10 @@ class NewsCardFragment : Fragment() {
                                 }
                                 Log.i(TAG, "onPageSelected: Position $position, fav ${uiState.dataList[position].isFavorite}")
                             }
-                        })
+                        }
+                        viewPagerCallBack?.let {
+                            registerOnPageChangeCallback(it)
+                        }
                     }
                 }
             }
@@ -125,7 +125,9 @@ class NewsCardFragment : Fragment() {
     }
 
     override fun onDestroy() {
-//        binding.cardsPager.unregisterOnPageChangeCallback(pagerCallBack)
+        viewPagerCallBack?.let {
+            binding.cardsPager.unregisterOnPageChangeCallback(it)
+        }
         _binding = null
         super.onDestroy()
     }
