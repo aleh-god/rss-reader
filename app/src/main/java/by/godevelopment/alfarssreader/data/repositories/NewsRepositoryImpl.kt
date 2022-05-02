@@ -1,7 +1,7 @@
 package by.godevelopment.alfarssreader.data.repositories
 
 import android.util.Log
-import by.godevelopment.alfarssreader.activities.MainSplashRepository
+import by.godevelopment.alfarssreader.ui.activities.MainSplashRepository
 import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.data.datamodels.ArticleEntity
 import by.godevelopment.alfarssreader.data.localdatasource.NewsLocalDataSource
@@ -13,8 +13,6 @@ import javax.inject.Inject
 class NewsRepositoryImpl @Inject constructor(
     private val newsRemoteDataSource: NewsRemoteDataSource,
     private val newsLocalDataSource: NewsLocalDataSource
-    //     // This could be CoroutineScope(SupervisorJob() + Dispatchers.Default).
-    //    private val externalScope: CoroutineScope
 ) : NewsRepository, MainSplashRepository {
 
     override fun getArticlesAsFlow(): Flow<List<ArticleEntity>> =

@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlfaRSSReader.Starting">
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AlfaRSSReader.Starting">
             <intent-filter>

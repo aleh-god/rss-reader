@@ -1,4 +1,4 @@
-package by.godevelopment.alfarssreader.activities
+package by.godevelopment.alfarssreader.ui.activities
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

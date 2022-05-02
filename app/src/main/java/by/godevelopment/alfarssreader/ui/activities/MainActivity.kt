@@ -1,4 +1,4 @@
-package by.godevelopment.alfarssreader.activities
+package by.godevelopment.alfarssreader.ui.activities
 
 import android.os.Bundle
 import android.util.Log

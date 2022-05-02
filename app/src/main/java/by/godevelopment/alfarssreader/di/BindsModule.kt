@@ -1,6 +1,6 @@
 package by.godevelopment.alfarssreader.di
 
-import by.godevelopment.alfarssreader.activities.MainSplashRepository
+import by.godevelopment.alfarssreader.ui.activities.MainSplashRepository
 import by.godevelopment.alfarssreader.data.repositories.NewsRepositoryImpl
 import by.godevelopment.alfarssreader.domain.repositories.NewsRepository
 import dagger.Binds
