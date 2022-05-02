@@ -6,9 +6,7 @@ import java.util.*
 import javax.inject.Inject
 
 class ConvertDateToStringUseCase @Inject constructor() {
-    operator fun invoke(milliseconds: Long): String {
-        val date = Date(milliseconds)
-        val df = SimpleDateFormat(ITEM_DATE_FORMAT_PATTERN, Locale.getDefault())
-        return df.format(date)
-    }
+    operator fun invoke(milliseconds: Long): String =
+        SimpleDateFormat(ITEM_DATE_FORMAT_PATTERN, Locale.getDefault())
+            .format(Date(milliseconds))
 }

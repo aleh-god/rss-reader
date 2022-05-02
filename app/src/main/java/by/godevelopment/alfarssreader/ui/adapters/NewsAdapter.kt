@@ -20,7 +20,7 @@ class NewsAdapter(
 
     private val diffCallback = object : DiffUtil.ItemCallback<NewsItemModel>() {
         override fun areItemsTheSame(oldItem: NewsItemModel, newItem: NewsItemModel): Boolean {
-            return oldItem == newItem
+            return oldItem.url == newItem.url
         }
 
         override fun areContentsTheSame(oldItem: NewsItemModel, newItem: NewsItemModel): Boolean {

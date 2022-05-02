@@ -14,12 +14,13 @@ import javax.inject.Inject
 class ConvertFromISO8601UTC @Inject constructor() {
     @SuppressLint("SimpleDateFormat")
     operator fun invoke(dateStr: String?): Long? {
-        val tz = TimeZone.getTimeZone(TIME_ZONE)
-        val df: DateFormat = SimpleDateFormat(DATE_FORMAT_PATTERN)
-        df.timeZone = tz
         return try {
-            val resultDate = dateStr?.let { df.parse(it) }
-            resultDate?.time
+            with(SimpleDateFormat(DATE_FORMAT_PATTERN)) {
+                timeZone = TimeZone.getTimeZone(TIME_ZONE)
+                dateStr?.let { parse(it) }.let { resultDate ->
+                    resultDate?.time
+                }
+            }
         } catch (e: ParseException) {
             Log.i(TAG, "ConvertFromISO8601UTC catch: ${e.message}")
             null
