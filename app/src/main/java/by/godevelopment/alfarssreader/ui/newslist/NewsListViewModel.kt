@@ -12,7 +12,6 @@ import by.godevelopment.alfarssreader.domain.usecases.ReloadDataUseCase
 import by.godevelopment.alfarssreader.domain.models.NewsItemModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -41,48 +40,32 @@ class NewsListViewModel @Inject constructor(
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch {
             getArticlesAndConvertToItemsUseCase()
-                .onStart {
-                    Log.i(TAG, "NewsListViewModel.launch: .onStart")
-                    _uiState.value = UiState(isFetchingData = true)
-                }
+                .onStart { _uiState.value = UiState(isFetchingData = true) }
                 .catch { exception ->
-                    Log.i(TAG, "NewsListViewModel: .catch ${exception.message}")
+                    Log.i(TAG, "NewsListViewModel.catch: ${exception.message}")
                     _uiState.value = UiState(isFetchingData = false)
-                    delay(500) // For good UI usability
                     _uiEvent.emit(stringHelper.getString(R.string.alert_error_loading))
                 }
-                .collect {
-                    Log.i(TAG, "NewsListViewModel: .collect = ${it.size}")
-                    _uiState.value = UiState(
-                        isFetchingData = false,
-                        dataList = it
-                    )
-                }
+                .collect { _uiState.value = UiState(isFetchingData = false, dataList = it) }
         }
     }
 
     fun reloadDataList() {
         viewModelScope.launch {
             try {
-                _uiState.value = uiState.value.copy(
-                    isFetchingData = true
-                )
+                _uiState.value = uiState.value.copy(isFetchingData = true)
                 reloadDataUseCase()
             } catch (e: Exception) {
-                Log.i(TAG, "reloadDataList: ${e.message}")
+                Log.i(TAG, "NewsListViewModel.reloadDataList: ${e.message}")
                 showAlert(stringHelper.getString(R.string.alert_error_loading))
             } finally {
-                _uiState.value = uiState.value.copy(
-                    isFetchingData = false
-                )
+                _uiState.value = uiState.value.copy(isFetchingData = false)
             }
         }
     }
 
     private fun showAlert(message: String) {
-        viewModelScope.launch {
-            _uiEvent.emit(message)
-        }
+        viewModelScope.launch { _uiEvent.emit(message) }
     }
 
     fun changeFavoriteStatusInNewsCard(urlKey: String?) {
@@ -91,7 +74,9 @@ class NewsListViewModel @Inject constructor(
                 try {
                     changeFavoriteStatusInNewsCardUseCase(urlKey)
                 } catch (e: Exception) {
-                    Log.i(TAG, "changeFavoriteStatusInNewsCard: ${e.message}")
+                    Log.i(
+                        TAG,
+                        "NewsListViewModel.changeFavoriteStatusInNewsCard: ${e.message}")
                     showAlert(stringHelper.getString(R.string.alert_error_loading))
                 }
             }

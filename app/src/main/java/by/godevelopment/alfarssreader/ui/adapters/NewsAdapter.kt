@@ -1,13 +1,11 @@
 package by.godevelopment.alfarssreader.ui.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import by.godevelopment.alfarssreader.R
-import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.databinding.ItemNewsListBinding
 import by.godevelopment.alfarssreader.domain.models.NewsItemModel
 import com.bumptech.glide.Glide
@@ -55,7 +53,6 @@ class NewsAdapter(
                 else R.drawable.ic_baseline_favorite_border_24
                 buttonAddNews.setImageResource(favPicRes)
                 buttonAddNews.setOnClickListener {
-                    Log.i(TAG, "buttonAddNews.setOnClickListener")
                     onClickAdd.invoke(newsItemModel.url)
                 }
                 buttonReadNews.setOnClickListener {

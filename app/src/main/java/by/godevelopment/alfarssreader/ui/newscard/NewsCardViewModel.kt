@@ -11,7 +11,6 @@ import by.godevelopment.alfarssreader.domain.usecases.GetArticlesAndConvertToCar
 import by.godevelopment.alfarssreader.domain.models.NewsCardsItemModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -40,27 +39,13 @@ class NewsCardViewModel @Inject constructor(
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch {
             getArticlesAndConvertToCardsItemsUseCase()
-                .onStart {
-                    Log.i(TAG, "NewsCardViewModel.launch: .onStart")
-                    _uiState.value = UiState(isFetchingData = true)
-                }
+                .onStart { _uiState.value = UiState(isFetchingData = true) }
                 .catch { exception ->
-                    Log.i(TAG, "NewsCardViewModel: .catch ${exception.message}")
+                    Log.i(TAG, "NewsCardViewModel.catch: ${exception.message}")
                     _uiState.value = UiState(isFetchingData = false)
-                    delay(500) // For good UI usability
                     _uiEvent.emit(stringHelper.getString(R.string.alert_error_loading))
                 }
-                .collect {
-                    Log.i(TAG, "NewsCardViewModel: .collect = ${it.size}")
-                    val fav = it.filter { item ->
-                        item.isFavorite
-                    }
-                    Log.i(TAG, "NewsCardViewModel: .fav = ${fav.size}")
-                    _uiState.value = UiState(
-                        isFetchingData = false,
-                        dataList = it
-                    )
-                }
+                .collect { _uiState.value = UiState(isFetchingData = false, dataList = it) }
         }
     }
 

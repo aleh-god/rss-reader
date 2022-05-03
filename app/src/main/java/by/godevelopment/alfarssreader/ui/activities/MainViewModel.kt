@@ -19,23 +19,15 @@ class MainViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            Log.i(TAG, "MainViewModel: viewModelScope.launch")
             mainSplashRepository
                 .getDbIsReadyStateAsFlow()
                 .onEach {
-                    Log.i(TAG, "MainViewModel: .onEach = $it")
-                    if (!it) {
-                        mainSplashRepository.reloadNewsFromRemoteToLocalDataSource()
-                        Log.i(TAG, "MainViewModel: .reloadNewsFromRemoteToLocalDataSource()")
-                    }
+                    if (!it) { mainSplashRepository.reloadNewsFromRemoteToLocalDataSource() }
                 }
                 .catch { throwable ->
                     Log.i(TAG, "MainViewModel: .catch ${throwable.message}")
                 }
-                .collect {
-                    Log.i(TAG, "MainViewModel: .collect = ${!it}")
-                    _isLoading.value = !it
-                }
+                .collect { _isLoading.value = !it }
         }
     }
 }

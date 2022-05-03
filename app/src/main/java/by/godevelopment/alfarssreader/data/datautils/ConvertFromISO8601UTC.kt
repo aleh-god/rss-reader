@@ -1,13 +1,11 @@
 package by.godevelopment.alfarssreader.data.datautils
 
 import android.annotation.SuppressLint
-import android.util.Log
 import by.godevelopment.alfarssreader.commons.DATE_FORMAT_PATTERN
-import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.commons.TIME_ZONE
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.TimeZone
+import java.util.*
 import javax.inject.Inject
 
 class ConvertFromISO8601UTC @Inject constructor() {
@@ -21,7 +19,6 @@ class ConvertFromISO8601UTC @Inject constructor() {
                 }
             }
         } catch (e: ParseException) {
-            Log.i(TAG, "ConvertFromISO8601UTC catch: ${e.message}")
             null
         }
     }

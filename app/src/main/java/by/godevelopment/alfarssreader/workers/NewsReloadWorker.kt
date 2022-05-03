@@ -23,11 +23,9 @@ class NewsReloadWorker @AssistedInject constructor(
     override suspend fun doWork(): Result {
         return withContext(workDispatcherIO) {
             try {
-                Log.i(TAG, "NewsReloadWorker doWork: reloadNewsFromRemoteToLocalDataSource")
                 newsRepositoryImpl.reloadNewsFromRemoteToLocalDataSource()
-                Log.i(TAG, "NewsReloadWorker doWork: reloadNewsFromRemoteToLocalDataSource +")
             } catch (e: Exception) {
-                Log.i(TAG, "NewsReloadWorker doWork: ${e.message}")
+                Log.i(TAG, "NewsReloadWorker.catch: ${e.message}")
                 Result.failure()
             }
             Result.success()

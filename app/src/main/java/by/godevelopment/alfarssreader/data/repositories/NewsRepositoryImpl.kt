@@ -1,8 +1,6 @@
 package by.godevelopment.alfarssreader.data.repositories
 
-import android.util.Log
 import by.godevelopment.alfarssreader.ui.activities.MainSplashRepository
-import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.data.datamodels.ArticleEntity
 import by.godevelopment.alfarssreader.data.localdatasource.NewsLocalDataSource
 import by.godevelopment.alfarssreader.data.remotedatasource.NewsRemoteDataSource
@@ -19,7 +17,6 @@ class NewsRepositoryImpl @Inject constructor(
         newsLocalDataSource.getAllNews()
 
     override suspend fun reloadNewsFromRemoteToLocalDataSource() {
-        Log.i(TAG, "reloadNews")
         val remoteData = newsRemoteDataSource.fetchLatestArticles()
         newsLocalDataSource.insertRawNews(remoteData)
     }
@@ -28,7 +25,6 @@ class NewsRepositoryImpl @Inject constructor(
         newsLocalDataSource.getDbIsReadyStateAsFlow()
 
     override suspend fun changeFavoriteStatusInArticleByUrl(key: String) {
-        Log.i(TAG, "changeFavoriteStatusInArticleByUrl: $key")
         newsLocalDataSource.changeFavoriteStatusInArticleByUrl(key)
     }
 }

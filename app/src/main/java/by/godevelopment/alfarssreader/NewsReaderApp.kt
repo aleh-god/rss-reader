@@ -1,10 +1,8 @@
 package by.godevelopment.alfarssreader
 
 import android.app.Application
-import android.util.Log
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
-import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.workers.NewsReloadTaskScheduler
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
@@ -28,7 +26,6 @@ class NewsReaderApp : Application(), Configuration.Provider {
     @Inject
     fun startNewsReloadTask(newsReloadTaskScheduler: NewsReloadTaskScheduler) {
         applicationScope.launch {
-            Log.i(TAG, "NewsReaderApp delayedInit: .launch")
             newsReloadTaskScheduler.startNewsReloadTask()
         }
     }

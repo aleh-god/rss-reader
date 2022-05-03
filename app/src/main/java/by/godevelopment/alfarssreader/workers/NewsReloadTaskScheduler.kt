@@ -1,8 +1,6 @@
 package by.godevelopment.alfarssreader.workers
 
-import android.util.Log
 import androidx.work.*
-import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.commons.TIME_INTERVAL_MIN
 import by.godevelopment.alfarssreader.commons.WORK_NAME
 import java.util.concurrent.TimeUnit
@@ -26,7 +24,5 @@ class NewsReloadTaskScheduler @Inject constructor(
             ExistingPeriodicWorkPolicy.KEEP,
             repeatingRequest
         )
-
-        Log.i(TAG, "NewsReaderApp setupNewsReloadWork: $constraints $repeatingRequest")
     }
 }

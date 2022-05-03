@@ -1,7 +1,6 @@
 package by.godevelopment.alfarssreader.ui.newscard
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import by.godevelopment.alfarssreader.R
-import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.databinding.FragmentNewsCardBinding
 import by.godevelopment.alfarssreader.ui.adapters.CardsAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -49,22 +47,17 @@ class NewsCardFragment : Fragment() {
     private fun setupUi() {
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect { uiState ->
-                Log.i(TAG, "NewsCardFragment setupUi: ${uiState.dataList.size}")
-
                 if (!uiState.isFetchingData) {
                     binding.linearProgress.visibility = View.GONE
                 } else binding.linearProgress.visibility = View.VISIBLE
 
                 if (!uiState.dataList.isNullOrEmpty()) {
-
                     val cardsAdapter = CardsAdapter(requireActivity(), uiState.dataList)
                     if (viewModel.currentCardPosition == null) {
                         viewModel.currentCardPosition = uiState
                             .dataList
                             .indexOfFirst { args.url == it.url }
                     }
-                    Log.i(TAG, "NewsCardFragment: position ${viewModel.currentCardPosition} = ${args.url}")
-
                     binding.cardsPager.apply {
                         adapter = cardsAdapter
                         setPageTransformer(ZoomOutPageTransformer())
@@ -85,7 +78,6 @@ class NewsCardFragment : Fragment() {
                                         item.setIcon(R.drawable.ic_baseline_favorite_24)
                                     else item.setIcon(R.drawable.ic_baseline_favorite_border_24)
                                 }
-                                Log.i(TAG, "onPageSelected: Position $position, fav ${uiState.dataList[position].isFavorite}")
                             }
                         }
                         viewPagerCallBack?.let {
@@ -114,7 +106,6 @@ class NewsCardFragment : Fragment() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.add_favorite -> {
-                    Log.i(TAG, "toolbar.setOnMenuItemClickListener: favorite_list")
                     viewModel.changeFavoriteStatusInNewsCard(currentCardUrlInViewPager)
                     true
                 }

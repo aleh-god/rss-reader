@@ -1,7 +1,6 @@
 package by.godevelopment.alfarssreader.ui.newslist
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.godevelopment.alfarssreader.R
-import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.databinding.FragmentNewsListBinding
 import by.godevelopment.alfarssreader.ui.adapters.NewsAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -30,12 +28,11 @@ class NewsListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val onClickRead: (String) -> Unit = {
-        Log.i(TAG, "onClickRead: Navigate to $it")
-        val action = NewsListFragmentDirections.actionNewsListFragmentToNewsCardFragment(it)
-        findNavController().navigate(action)
+        findNavController().navigate(
+            NewsListFragmentDirections.actionNewsListFragmentToNewsCardFragment(it)
+        )
     }
     private val onClickAdd: (String) -> Unit = {
-        Log.i(TAG, "onClickAdd: changeFavoriteStatusInNewsCard $it")
         viewModel.changeFavoriteStatusInNewsCard(it)
     }
 
@@ -57,7 +54,6 @@ class NewsListFragment : Fragment() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.favorite_list -> {
-                    Log.i(TAG, "toolbar.setOnMenuItemClickListener: favorite_list")
                     findNavController().navigate(R.id.action_newsListFragment_to_favoriteListFragment)
                     true
                 }
@@ -85,13 +81,11 @@ class NewsListFragment : Fragment() {
         }
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect { uiState ->
-                Log.i(TAG, "NewsListFragment setupUi: ${uiState.dataList.size}")
                 if (!uiState.isFetchingData) {
                     binding.linearProgress.visibility = View.GONE
                     binding.swipeContainer.isRefreshing = false
                 } else binding.linearProgress.visibility = View.VISIBLE
                 if (!uiState.dataList.isNullOrEmpty()) {
-                    Log.i(TAG, "NewsListFragment rvAdapter.itemList: ${uiState.dataList.size}")
                     rvAdapter.itemList = uiState.dataList
                 }
                 binding.toolbar.apply {

@@ -1,7 +1,6 @@
 package by.godevelopment.alfarssreader.ui.favoritelist
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.godevelopment.alfarssreader.R
-import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.databinding.FragmentFavoriteListBinding
 import by.godevelopment.alfarssreader.ui.adapters.FavAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -31,12 +29,10 @@ class FavoriteListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val onClickRead: (String) -> Unit = {
-        Log.i(TAG, "onClickRead: Navigate to $it")
         val action = FavoriteListFragmentDirections.actionFavoriteListFragmentToNewsCardFragment(it)
         findNavController().navigate(action)
     }
     private val onClickDel: (String) -> Unit = {
-        Log.i(TAG, "onClickAdd: changeFavoriteStatusInNewsCard $it")
         viewModel.changeFavoriteStatusInNewsCard(it)
     }
 
@@ -57,7 +53,6 @@ class FavoriteListFragment : Fragment() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.news_list -> {
-                    Log.i(TAG, "toolbar.setOnMenuItemClickListener: news_list")
                     findNavController().navigate(R.id.action_favoriteListFragment_to_newsListFragment)
                     true
                 }
@@ -77,12 +72,10 @@ class FavoriteListFragment : Fragment() {
         }
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect { uiState ->
-                Log.i(TAG, "FavoriteListFragment setupUi: ${uiState.dataList.size}")
                 if (!uiState.isFetchingData) {
                     binding.linearProgress.visibility = View.GONE
                 } else binding.linearProgress.visibility = View.VISIBLE
                 if (!uiState.dataList.isNullOrEmpty()) {
-                    Log.i(TAG, "FavoriteListFragment rvAdapter.itemList: ${uiState.dataList.size}")
                     rvAdapter.itemList = uiState.dataList
                 }
                 binding.toolbar.apply {
