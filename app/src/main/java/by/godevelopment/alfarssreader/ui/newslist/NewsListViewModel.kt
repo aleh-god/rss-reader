@@ -28,7 +28,7 @@ class NewsListViewModel @Inject constructor(
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> = _uiState
 
-    private val _uiEvent  = MutableSharedFlow<String>(0)
+    private val _uiEvent = MutableSharedFlow<String>(0)
     val uiEvent: SharedFlow<String> = _uiEvent
 
     private var fetchJob: Job? = null
@@ -63,22 +63,18 @@ class NewsListViewModel @Inject constructor(
 
     fun reloadDataList() {
         viewModelScope.launch {
-            val currentState = _uiState.value
             try {
-
-                _uiState.value = currentState.copy(
+                _uiState.value = uiState.value.copy(
                     isFetchingData = true
                 )
                 reloadDataUseCase()
-                _uiState.value = currentState.copy(
-                    isFetchingData = false
-                )
             } catch (e: Exception) {
                 Log.i(TAG, "reloadDataList: ${e.message}")
-                _uiState.value = currentState.copy(
+                showAlert(stringHelper.getString(R.string.alert_error_loading))
+            } finally {
+                _uiState.value = uiState.value.copy(
                     isFetchingData = false
                 )
-                showAlert(stringHelper.getString(R.string.alert_error_loading))
             }
         }
     }
