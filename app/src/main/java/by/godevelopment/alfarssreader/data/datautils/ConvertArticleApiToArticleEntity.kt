@@ -19,7 +19,7 @@ class ConvertArticleApiToArticleEntity @Inject constructor(
                     author = author ?: getString(R.string.article_author_null_stub),
                     description = description ?: getString(R.string.article_description_null_stub),
                     publishedAt = convertFromISO8601UTC(publishedAt) ?: LONG_STUB,
-                    id = source.id ?: INT_STUB.toString(),
+                    id = source.id ?: INT_STUB,
                     name = source.name ?: getString(R.string.name_title_null_stub),
                     title = title ?: getString(R.string.article_title_null_stub),
                     url = url,

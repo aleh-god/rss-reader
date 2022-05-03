@@ -2,7 +2,7 @@ package by.godevelopment.alfarssreader.commons
 
 const val TAG = "AlfaRss#"
 const val INIT_STATUS = "is not loaded"
-const val INT_STUB = 0
+const val INT_STUB = "-1"
 const val LONG_STUB = 0L
 const val BASE_URL = "https://newsapi.org/v2/"
 const val TIME_ZONE = "UTC"
