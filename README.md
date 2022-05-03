@@ -2,7 +2,9 @@
 
 Android interview task. News API implementation.
 
-##Technologies used:##
+<img alt="SixthTaskDemo" src="https://github.com/aleh-god/alfa-rss-reader-sample/blob/master/DemoRssReader.gif" />
+
+## Technologies used: ##
 
 1. Navigation Component
 2. viewBinding
@@ -12,3 +14,5 @@ Android interview task. News API implementation.
 6. Retrofit
 7. ROOM   
 8. Material Design
+9. WorkManager
+10. RV, VP2
