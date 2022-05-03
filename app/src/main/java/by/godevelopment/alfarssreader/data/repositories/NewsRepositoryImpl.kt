@@ -24,8 +24,8 @@ class NewsRepositoryImpl @Inject constructor(
         newsLocalDataSource.insertRawNews(remoteData)
     }
 
-    override fun getDbIsReadyStateAsFlow(): Flow<Boolean>
-        = newsLocalDataSource.getDbIsReadyStateAsFlow()
+    override fun getDbIsReadyStateAsFlow(): Flow<Boolean> =
+        newsLocalDataSource.getDbIsReadyStateAsFlow()
 
     override suspend fun changeFavoriteStatusInArticleByUrl(key: String) {
         Log.i(TAG, "changeFavoriteStatusInArticleByUrl: $key")

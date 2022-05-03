@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class NewsReloadTaskScheduler @Inject constructor(
     private val workManager: WorkManager
-){
+) {
     fun startNewsReloadTask() {
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -24,7 +24,8 @@ class NewsReloadTaskScheduler @Inject constructor(
         workManager.enqueueUniquePeriodicWork(
             WORK_NAME,
             ExistingPeriodicWorkPolicy.KEEP,
-            repeatingRequest)
+            repeatingRequest
+        )
 
         Log.i(TAG, "NewsReaderApp setupNewsReloadWork: $constraints $repeatingRequest")
     }

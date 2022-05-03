@@ -21,7 +21,5 @@ object DataBaseModule {
     @Provides
     @Singleton
     fun provideNewsDatabase(@ApplicationContext context: Context): NewsDatabase =
-        Room
-        .databaseBuilder(context, NewsDatabase::class.java, "news_database.db")
-        .build()
+        Room.databaseBuilder(context, NewsDatabase::class.java, "news_database.db").build()
 }

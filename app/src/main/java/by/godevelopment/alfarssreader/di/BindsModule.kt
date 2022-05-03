@@ -13,8 +13,8 @@ import dagger.hilt.components.SingletonComponent
 abstract class BindsModule {
 
     @Binds
-    abstract fun bindRepositoryToImpl(newsRepositoryImpl: NewsRepositoryImpl) : NewsRepository
+    abstract fun bindRepositoryToImpl(newsRepositoryImpl: NewsRepositoryImpl): NewsRepository
 
     @Binds
-    abstract fun bindMainSplashRepositoryToImpl(newsRepositoryImpl: NewsRepositoryImpl) : MainSplashRepository
+    abstract fun bindMainSplashRepositoryToImpl(newsRepositoryImpl: NewsRepositoryImpl): MainSplashRepository
 }

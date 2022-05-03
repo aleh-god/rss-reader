@@ -28,14 +28,15 @@ class NewsCardFragment : Fragment() {
 
     private val viewModel: NewsCardViewModel by viewModels()
     private var _binding: FragmentNewsCardBinding? = null
-    private val  binding: FragmentNewsCardBinding get() = _binding!!
+    private val binding: FragmentNewsCardBinding get() = _binding!!
     private val args: NewsCardFragmentArgs by navArgs()
 
     private var viewPagerCallBack: ViewPager2.OnPageChangeCallback? = null
     private var currentCardUrlInViewPager: String? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNewsCardBinding.inflate(inflater, container, false)
@@ -101,8 +102,9 @@ class NewsCardFragment : Fragment() {
             viewModel.uiEvent.collect {
                 Snackbar
                     .make(binding.root, it, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(getString(R.string.snackbar_btn_reload))
-                    { viewModel.fetchDataModel() }
+                    .setAction(getString(R.string.snackbar_btn_reload)) {
+                        viewModel.fetchDataModel()
+                    }
                     .show()
             }
         }

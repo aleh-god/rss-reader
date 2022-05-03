@@ -25,7 +25,7 @@ class FavoriteListViewModel @Inject constructor(
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> = _uiState
 
-    private val _uiEvent  = MutableSharedFlow<String>(0)
+    private val _uiEvent = MutableSharedFlow<String>(0)
     val uiEvent: SharedFlow<String> = _uiEvent
 
     private var fetchJob: Job? = null

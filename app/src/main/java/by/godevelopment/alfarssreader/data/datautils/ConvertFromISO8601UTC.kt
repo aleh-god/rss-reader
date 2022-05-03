@@ -5,10 +5,9 @@ import android.util.Log
 import by.godevelopment.alfarssreader.commons.DATE_FORMAT_PATTERN
 import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.commons.TIME_ZONE
-import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.TimeZone
 import javax.inject.Inject
 
 class ConvertFromISO8601UTC @Inject constructor() {

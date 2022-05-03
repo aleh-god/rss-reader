@@ -40,7 +40,8 @@ class NewsListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNewsListBinding.inflate(inflater, container, false)
@@ -107,8 +108,9 @@ class NewsListFragment : Fragment() {
             viewModel.uiEvent.collect {
                 Snackbar
                     .make(binding.root, it, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(getString(R.string.snackbar_btn_reload))
-                    { viewModel.reloadDataList() }
+                    .setAction(getString(R.string.snackbar_btn_reload)) {
+                        viewModel.reloadDataList()
+                    }
                     .show()
             }
         }

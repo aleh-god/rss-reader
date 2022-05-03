@@ -26,7 +26,7 @@ class NewsLocalDataSource @Inject constructor(
     suspend fun changeFavoriteStatusInArticleByUrl(key: String) {
         val article = newsDao.getArticleEntityByUrl(key)
         newsDao.replaceAllArticleEntities(
-            article.copy( isFavorite = !article.isFavorite )
+            article.copy(isFavorite = !article.isFavorite)
         )
     }
 

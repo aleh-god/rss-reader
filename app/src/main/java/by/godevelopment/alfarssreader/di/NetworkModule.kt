@@ -20,10 +20,10 @@ import javax.inject.Singleton
 object NetworkModule {
 
     @Provides
-    fun provideBaseUrl() : String = BASE_URL
+    fun provideBaseUrl(): String = BASE_URL
 
     @Provides
-    fun provideMoshi() : Moshi = Moshi.Builder()
+    fun provideMoshi(): Moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
 
@@ -38,9 +38,9 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(
         moshi: Moshi,
-        BASE_URL : String,
+        BASE_URL: String,
         okHttpClient: OkHttpClient
-    ) : Retrofit = Retrofit.Builder()
+    ): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(MoshiConverterFactory.create(moshi))

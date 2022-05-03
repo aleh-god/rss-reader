@@ -41,7 +41,8 @@ class FavoriteListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFavoriteListBinding.inflate(inflater, container, false)
@@ -98,8 +99,9 @@ class FavoriteListFragment : Fragment() {
             viewModel.uiEvent.collect {
                 Snackbar
                     .make(binding.root, it, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(getString(R.string.snackbar_btn_reload))
-                    { viewModel.fetchDataModel() }
+                    .setAction(getString(R.string.snackbar_btn_reload)) {
+                        viewModel.fetchDataModel()
+                    }
                     .show()
             }
         }

@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NewsDao {
-    
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAllArticleEntities(vararg articles: ArticleEntity)
 

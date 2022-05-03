@@ -61,7 +61,8 @@ class FavAdapter(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ))
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {

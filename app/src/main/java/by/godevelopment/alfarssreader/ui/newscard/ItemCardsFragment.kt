@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import by.godevelopment.alfarssreader.commons.TAG
 import by.godevelopment.alfarssreader.databinding.ItemCardsFragmentBinding
@@ -28,6 +30,8 @@ class ItemCardsFragment : Fragment() {
             binding.webView.restoreState(savedInstanceState)
         } else {
             arguments?.takeIf { it.containsKey(TAG) }?.apply {
+                binding.webView.webViewClient = WebViewClient()
+                binding.webView.webChromeClient = WebChromeClient()
                 binding.webView.loadUrl(getString(TAG).toString())
             }
         }

@@ -11,6 +11,10 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.6.21' apply false
 }
 
+plugins {
+    id("org.jlleitschuh.gradle.ktlint-idea") version "10.2.1"
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

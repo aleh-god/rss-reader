@@ -23,8 +23,11 @@ class MainViewModel @Inject constructor(
             mainSplashRepository
                 .getDbIsReadyStateAsFlow()
                 .onEach {
-                    if (!it) mainSplashRepository.reloadNewsFromRemoteToLocalDataSource()
                     Log.i(TAG, "MainViewModel: .onEach = $it")
+                    if (!it) {
+                        mainSplashRepository.reloadNewsFromRemoteToLocalDataSource()
+                        Log.i(TAG, "MainViewModel: .reloadNewsFromRemoteToLocalDataSource()")
+                    }
                 }
                 .catch { throwable ->
                     Log.i(TAG, "MainViewModel: .catch ${throwable.message}")

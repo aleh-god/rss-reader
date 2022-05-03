@@ -52,7 +52,7 @@ class NewsAdapter(
 
                 val favPicRes = if (newsItemModel.isFavorite)
                     R.drawable.ic_baseline_favorite_24
-                    else R.drawable.ic_baseline_favorite_border_24
+                else R.drawable.ic_baseline_favorite_border_24
                 buttonAddNews.setImageResource(favPicRes)
                 buttonAddNews.setOnClickListener {
                     Log.i(TAG, "buttonAddNews.setOnClickListener")
@@ -71,7 +71,8 @@ class NewsAdapter(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ))
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
