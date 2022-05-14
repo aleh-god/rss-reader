@@ -61,7 +61,8 @@ class NewsCardViewModel @Inject constructor(
                 try {
                     changeFavoriteStatusInNewsCardUseCase(urlKey)
                 } catch (e: Exception) {
-                    showAlert("${e.message}")
+                    Log.i(TAG, "changeFavoriteStatusInNewsCard.catch: ${e.message}")
+                    showAlert(stringHelper.getString(R.string.alert_error_IO))
                 }
             }
         }

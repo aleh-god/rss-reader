@@ -51,14 +51,13 @@ class FavoriteListViewModel @Inject constructor(
         viewModelScope.launch { _uiEvent.emit(message) }
     }
 
-    fun changeFavoriteStatusInNewsCard(urlKey: String?) {
-        urlKey?.let {
-            viewModelScope.launch {
-                try {
-                    changeFavoriteStatusInNewsCardUseCase(urlKey)
-                } catch (e: Exception) {
-                    showAlert("${e.message}")
-                }
+    fun changeFavoriteStatusInNewsCard(urlKey: String) {
+        viewModelScope.launch {
+            try {
+                changeFavoriteStatusInNewsCardUseCase(urlKey)
+            } catch (e: Exception) {
+                Log.i(TAG, "changeFavoriteStatusInNewsCard.catch: ${e.message}")
+                showAlert(stringHelper.getString(R.string.alert_error_IO))
             }
         }
     }
