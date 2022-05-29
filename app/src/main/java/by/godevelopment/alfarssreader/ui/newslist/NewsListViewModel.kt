@@ -25,10 +25,10 @@ class NewsListViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState())
-    val uiState: StateFlow<UiState> = _uiState
+    val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 
     private val _uiEvent = MutableSharedFlow<String>(0)
-    val uiEvent: SharedFlow<String> = _uiEvent
+    val uiEvent: SharedFlow<String> = _uiEvent.asSharedFlow()
 
     private var fetchJob: Job? = null
 
