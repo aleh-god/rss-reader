@@ -28,7 +28,6 @@ object NetworkModule {
         .build()
 
     @Provides
-    @Singleton
     fun provideOkHttpClient() = OkHttpClient.Builder()
         .addInterceptor(
             HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) }
@@ -47,10 +46,6 @@ object NetworkModule {
         .build()
 
     @Provides
+    @Singleton
     fun provideNewsApi(retrofit: Retrofit): NewsApi = retrofit.create(NewsApi::class.java)
-
-    @Provides
-    fun provideNewsDataSource(
-        NewsApi: NewsApi
-    ): NewsRemoteDataSource = NewsRemoteDataSource(NewsApi)
 }
