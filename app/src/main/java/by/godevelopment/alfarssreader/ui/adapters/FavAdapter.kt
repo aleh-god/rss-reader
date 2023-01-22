@@ -31,17 +31,25 @@ class FavAdapter(
         set(value) { differ.submitList(value) }
 
     inner class ItemViewHolder(private val binding: ItemFavListBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        private var itemUrl: String? = null
+
+        init {
+            binding.apply {
+                buttonDelNews.setOnClickListener { _ ->
+                    itemUrl?.let { onClickDel(it) }
+                }
+                buttonReadNews.setOnClickListener { _ ->
+                    itemUrl?.let { onClickRead(it) }
+                }
+            }
+        }
+
         fun bind(newsItemModel: NewsItemModel) {
+            itemUrl = newsItemModel.url
             binding.apply {
                 textTitle.text = newsItemModel.textTitle
                 textAuthor.text = newsItemModel.textAuthor
-
-                buttonDelNews.setOnClickListener {
-                    onClickDel.invoke(newsItemModel.url)
-                }
-                buttonReadNews.setOnClickListener {
-                    onClickRead.invoke(newsItemModel.url)
-                }
                 newsItemModel.urlToImage?.let {
                     Glide.with(root)
                         .load(it)

@@ -31,7 +31,22 @@ class NewsAdapter(
         set(value) { differ.submitList(value) }
 
     inner class ItemViewHolder(private val binding: ItemNewsListBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        private var itemUrl: String? = null
+
+        init {
+            binding.apply {
+                buttonAddNews.setOnClickListener { _ ->
+                    itemUrl?.let { onClickAdd(it) }
+                }
+                buttonReadNews.setOnClickListener { _ ->
+                    itemUrl?.let { onClickRead(it) }
+                }
+            }
+        }
+
         fun bind(newsItemModel: NewsItemModel) {
+            itemUrl = newsItemModel.url
             binding.apply {
                 textTitle.text = newsItemModel.textTitle
                 textAuthor.text = newsItemModel.textAuthor
@@ -52,12 +67,6 @@ class NewsAdapter(
                     R.drawable.ic_baseline_favorite_24
                 else R.drawable.ic_baseline_favorite_border_24
                 buttonAddNews.setImageResource(favPicRes)
-                buttonAddNews.setOnClickListener {
-                    onClickAdd.invoke(newsItemModel.url)
-                }
-                buttonReadNews.setOnClickListener {
-                    onClickRead.invoke(newsItemModel.url)
-                }
             }
         }
     }
