@@ -38,10 +38,14 @@ class NewsCardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNewsCardBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupUi()
         setupEvent()
         setupListener()
-        return binding.root
     }
 
     private fun setupUi() {
@@ -51,7 +55,7 @@ class NewsCardFragment : Fragment() {
                     binding.linearProgress.visibility = View.GONE
                 } else binding.linearProgress.visibility = View.VISIBLE
 
-                if (!uiState.dataList.isNullOrEmpty()) {
+                if (uiState.dataList.isNotEmpty()) {
                     val cardsAdapter = CardsAdapter(requireActivity(), uiState.dataList)
                     if (viewModel.currentCardPosition == null) {
                         viewModel.currentCardPosition = uiState
@@ -117,11 +121,11 @@ class NewsCardFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         viewPagerCallBack?.let {
             binding.cardsPager.unregisterOnPageChangeCallback(it)
         }
         _binding = null
-        super.onDestroy()
+        super.onDestroyView()
     }
 }

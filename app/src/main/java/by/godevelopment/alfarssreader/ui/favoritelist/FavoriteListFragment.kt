@@ -42,11 +42,15 @@ class FavoriteListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFavoriteListBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupListener()
         setupUi()
         setupEvent()
-        setHasOptionsMenu(true)
-        setupListener()
-        return binding.root
     }
 
     private fun setupListener() {
@@ -75,7 +79,7 @@ class FavoriteListFragment : Fragment() {
                 if (!uiState.isFetchingData) {
                     binding.linearProgress.visibility = View.GONE
                 } else binding.linearProgress.visibility = View.VISIBLE
-                if (!uiState.dataList.isNullOrEmpty()) {
+                if (uiState.dataList.isNotEmpty()) {
                     rvAdapter.itemList = uiState.dataList
                 }
                 binding.toolbar.apply {

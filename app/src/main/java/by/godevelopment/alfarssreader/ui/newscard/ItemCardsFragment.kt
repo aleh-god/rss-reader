@@ -21,7 +21,6 @@ class ItemCardsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = ItemCardsFragmentBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -42,8 +41,8 @@ class ItemCardsFragment : Fragment() {
         super.onSaveInstanceState(outState)
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         _binding = null
-        super.onDestroy()
+        super.onDestroyView()
     }
 }

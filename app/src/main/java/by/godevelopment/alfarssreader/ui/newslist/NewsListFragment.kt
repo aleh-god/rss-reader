@@ -36,18 +36,24 @@ class NewsListFragment : Fragment() {
         viewModel.changeFavoriteStatusInNewsCard(it)
     }
 
+    private val rvAdapter = NewsAdapter(onClickRead, onClickAdd)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNewsListBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
         setupUi()
         setupEvent()
-        setHasOptionsMenu(true)
         setupListener()
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     private fun setupListener() {
@@ -63,7 +69,6 @@ class NewsListFragment : Fragment() {
     }
 
     private fun setupUi() {
-        val rvAdapter = NewsAdapter(onClickRead, onClickAdd)
         binding.apply {
             recyclerView.adapter = rvAdapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -85,7 +90,7 @@ class NewsListFragment : Fragment() {
                     binding.linearProgress.visibility = View.GONE
                     binding.swipeContainer.isRefreshing = false
                 } else binding.linearProgress.visibility = View.VISIBLE
-                if (!uiState.dataList.isNullOrEmpty()) {
+                if (uiState.dataList.isNotEmpty()) {
                     rvAdapter.itemList = uiState.dataList
                 }
                 binding.toolbar.apply {
@@ -110,8 +115,8 @@ class NewsListFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         _binding = null
-        super.onDestroy()
+        super.onDestroyView()
     }
 }
